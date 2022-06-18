@@ -1,25 +1,31 @@
 import type { RequestHandler } from './__types';
+import type { Sighting } from '../lib/model';
+import { parse } from 'cookie';
 
 const base = 'http://localhost:8000/api';
 
 export const get: RequestHandler = async ({ request }) => {
-	const cookie: string | null = request.headers.get('cookie');
-	if (cookie == null) {
+	const cookies = parse(request.headers.get('cookie') || '');
+	if (!cookies.jwt) {
 		return {
-			status: 401
+			status: 303,
+			headers: {
+				location: '/login'
+			}
 		};
 	}
+
 	const response = await fetch(`${base}/sightings`, {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
-			cookie: cookie
+			cookie: `jwt=${cookies.jwt}`
 		},
 		credentials: 'include'
 	});
 
-	const responseBody = await response.json();
 	if (response.status === 200) {
+		const responseBody: Sighting[] = await response.json();
 		return {
 			body: {
 				sightings: responseBody

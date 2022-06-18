@@ -1,17 +1,15 @@
 <script lang="ts">
-	import Map from '../components/Map.svelte';
+	import Map from '../components/sightings/Map.svelte';
+	import Modal from 'svelte-simple-modal';
+	import type { Sighting } from '../lib/model';
 
-	type Sighting = {
-		name: string;
-		geo: number[][];
-		species: number[];
-	};
-
-	export let sightings;
+	export let sightings: Sighting[];
 </script>
 
 <div class="map-container">
-	<Map lat={55} lon={-2.7885207382742863} zoom={5} {sightings} />
+	<Modal>
+		<Map lat={55} lon={-2.7885207382742863} zoom={5} {sightings} />
+	</Modal>
 </div>
 
 <style>

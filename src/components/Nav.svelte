@@ -1,25 +1,12 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import AddSightingPopup from './AddSightingPopup.svelte';
+	import { page } from '$app/stores';
+	import AddSightingPopup from './addsightings/Popup.svelte';
 	import { getResources } from './_api';
 	import { invalidate } from '$app/navigation';
+	import type { AddSightingData, Geo, Species } from '../lib/model';
 
 	const { open } = getContext('simple-modal');
-
-	export type Species = {
-		id: number;
-		preferredCommonName: string;
-	};
-
-	type Geo = {
-		id: number;
-		name: string;
-	};
-
-	type AddSightingData = {
-		species: Species[];
-		geos: Geo[];
-	};
 
 	async function addSightingMetadata(): Promise<AddSightingData> {
 		const speciesResponse = await getResources(`species`);
@@ -52,7 +39,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 	<div class="container-fluid">
-		<a href="/" class="navbar-brand">Home</a>
+		<a href="/" class="navbar-brand" class:active={$page.url.pathname === '/'}>Home</a>
 
 		<div>
 			<ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -60,7 +47,7 @@
 					<a href="/#" class="nav-link" on:click={showAddSighting}>Add Sighting</a>
 				</li>
 				<li class="nav-item">
-					<a href="/#" class="nav-link">Logout</a>
+					<a href="/logout" class="nav-link">Logout</a>
 				</li>
 			</ul>
 		</div>

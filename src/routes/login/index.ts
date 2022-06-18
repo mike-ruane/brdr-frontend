@@ -3,7 +3,7 @@ import type { RequestHandler } from './__types';
 const base = 'http://localhost:8000/api';
 
 export const post: RequestHandler = async ({ request }) => {
-	const data = await request.json();
+	const data = await request.formData();
 	const response = await fetch(`${base}/login`, {
 		method: 'POST',
 		headers: {
@@ -11,7 +11,10 @@ export const post: RequestHandler = async ({ request }) => {
 			Accept: 'application/json, text/plain, */*'
 		},
 		credentials: 'include',
-		body: JSON.stringify(data)
+		body: JSON.stringify({
+			email: data.has('email') ? data.get('email') : undefined,
+			password: data.has('password') ? data.get('password') : undefined
+		})
 	});
 
 	const status: number = response.status;
@@ -31,12 +34,10 @@ export const post: RequestHandler = async ({ request }) => {
 			};
 		}
 		return {
-			status: status,
+			status: 303,
 			headers: {
-				'Set-Cookie': cookie
-			},
-			body: {
-				message: 'Successfully signed in'
+				'set-cookie': cookie,
+				location: '/'
 			}
 		};
 	} else {
