@@ -8,7 +8,6 @@ export const post: RequestHandler = async ({ request }) => {
 		};
 	}
 	const form = await request.json();
-	console.log(form);
 	const response = await postData('sightings', cookie, form);
 
 	return {

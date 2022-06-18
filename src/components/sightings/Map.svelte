@@ -1,6 +1,8 @@
-<script>
-	import { onMount, setContext } from 'svelte';
-	import { mapbox, key } from '../mapbox.js';
+<script lang="ts">
+	import { getContext, onMount, setContext } from 'svelte';
+	import { mapbox, key } from '../../mapbox.js';
+	import Summary from './Summary.svelte';
+	import type { SightingDetail } from '../../lib/model';
 
 	setContext(key, {
 		getMap: () => map
@@ -14,6 +16,8 @@
 	let container;
 	let map;
 
+	const { open } = getContext('simple-modal');
+
 	function mapSightingsToGeoJson(sightings) {
 		return {
 			type: 'FeatureCollection',
@@ -22,7 +26,7 @@
 					type: 'Feature',
 					properties: {
 						name: sighting.name,
-						species: sighting.species,
+						geoId: sighting.geoId,
 						speciesCount: sighting.species.length
 					},
 					geometry: {
@@ -72,6 +76,14 @@
 							'text-field': '{speciesCount}'
 						}
 					});
+				});
+
+				map.on('click', 'lad-layer', async (e) => {
+					const geoId = e.features[0].properties.geoId;
+					const geo = e.features[0].properties.name;
+					const speciesResponse = await fetch(`summary?geoId=${geoId}`);
+					const details: SightingDetail = await speciesResponse.json();
+					open(Summary, { details: details, geo: geo });
 				});
 			}
 		};

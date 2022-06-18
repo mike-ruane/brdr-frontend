@@ -3,30 +3,21 @@
 	import { DateInput } from 'date-picker-svelte';
 	import dayjs from 'dayjs';
 
-	import type Species from './Nav.svelte';
-	import type Geo from './Nav.svelte';
-	import AddSightingResponse from './AddSightingResponse.svelte';
-
-	type Sighting = {
-		userId: number;
-		species: number[];
-		geoId: number;
-		date: string;
-	};
+	import AddSightingResponse from './Response.svelte';
+	import type { Form, Geo, Species } from '../../lib/model';
 
 	export let species: Species[];
 	export let geos: Geo[];
 	export let date = new Date();
 	let selectedSpecies: string[];
 	let selectedGeo: string;
-	let formData: Sighting = {} as Sighting;
+	let formData: Form = {} as Form;
 	let showResponse = false;
 	let success: boolean;
 	formData.date = dayjs(date).format('YYYY-MM-DD');
 
 	function selectSpecies(event) {
 		if (event.detail) {
-			console.log(event.detail);
 			formData.species = event.detail.map((item) => item.id);
 			selectedSpecies = event.detail.map((item) => item.preferredCommonName);
 		}
