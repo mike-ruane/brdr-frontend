@@ -1,32 +1,15 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import { page } from '$app/stores';
-	import AddSightingPopup from './addsightings/Popup.svelte';
-	import { getResources } from './_api';
 	import { invalidate } from '$app/navigation';
-	import type { AddSightingData, Geo, Species } from '../lib/model';
+	import Popup from './addsightings/Popup.svelte';
 
 	const { open } = getContext('simple-modal');
 
-	async function addSightingMetadata(): Promise<AddSightingData> {
-		const speciesResponse = await getResources(`species`);
-		const geosResponse = await getResources(`geos`);
-
-		const speciesResponseBody: Species[] = await speciesResponse.json();
-		const geosResponseBody: Geo[] = await geosResponse.json();
-		if (speciesResponse.status === 200 && geosResponse.status === 200) {
-			return {
-				species: speciesResponseBody,
-				geos: geosResponseBody
-			};
-		}
-	}
-
 	async function showAddSighting() {
-		const metadata: AddSightingData = await addSightingMetadata();
 		open(
-			AddSightingPopup,
-			{ geos: metadata.geos, species: metadata.species },
+			Popup,
+			{},
 			{ closeButton: true },
 			{
 				onClosed: () => {

@@ -3,12 +3,13 @@
 	import Modal from 'svelte-simple-modal';
 	import type { Sighting } from '../lib/model';
 
+	export let username: string;
 	export let sightings: Sighting[];
 </script>
 
 <div class="map-container">
 	<Modal>
-		<Map lat={55} lon={-2.7885207382742863} zoom={5} {sightings} />
+		<Map lat={55} lon={-2.7885207382742863} zoom={5} {sightings} {username} />
 	</Modal>
 </div>
 

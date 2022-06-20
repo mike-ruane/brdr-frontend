@@ -1,4 +1,5 @@
 import type { RequestHandler } from './__types';
+import { parse } from 'cookie';
 
 const base = 'http://localhost:8000/api';
 
@@ -27,8 +28,10 @@ export const post: RequestHandler = async ({ request }) => {
 			}
 		};
 	} else if (status == 200) {
-		const cookie: string | null = response.headers.get('set-cookie');
-		if (cookie == null) {
+		const username = await response.text();
+		const cookies = parse(response.headers.get('set-cookie') || '');
+		const jwt = cookies && cookies.jwt && cookies.jwt;
+		if (!jwt) {
 			return {
 				status: 401
 			};
@@ -36,7 +39,7 @@ export const post: RequestHandler = async ({ request }) => {
 		return {
 			status: 303,
 			headers: {
-				'set-cookie': cookie,
+				'Set-Cookie': [`jwt=${jwt}`, `brdr=${username}`],
 				location: '/'
 			}
 		};

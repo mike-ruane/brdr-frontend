@@ -4,17 +4,23 @@
 	import dayjs from 'dayjs';
 
 	import AddSightingResponse from './Response.svelte';
-	import type { Form, Geo, Species } from '../../lib/model';
+	import type { AddSightingData, Form } from '../../lib/model';
+	import { addSightingMetadata } from '../../lib/utils';
+	import { onMount } from 'svelte';
 
-	export let species: Species[];
-	export let geos: Geo[];
 	export let date = new Date();
+	export let username: string;
+	let metadata: AddSightingData;
 	let selectedSpecies: string[];
 	let selectedGeo: string;
 	let formData: Form = {} as Form;
 	let showResponse = false;
 	let success: boolean;
 	formData.date = dayjs(date).format('YYYY-MM-DD');
+
+	onMount(async () => {
+		metadata = await addSightingMetadata();
+	});
 
 	function selectSpecies(event) {
 		if (event.detail) {
@@ -52,9 +58,10 @@
 	<AddSightingResponse species={selectedSpecies} location={selectedGeo} {date} {success} />
 {:else}
 	<div class="addSighting">
+		<h3>What have you seen today, {username}?</h3>
 		<div class="select">
 			<Select
-				items={species}
+				items={metadata && metadata.species}
 				optionIdentifier="id"
 				labelIdentifier="preferredCommonName"
 				placeholder="enter species..."
@@ -64,7 +71,7 @@
 		</div>
 		<div class="select">
 			<Select
-				items={geos}
+				items={metadata && metadata.geos}
 				optionIdentifier="id"
 				labelIdentifier="name"
 				placeholder="enter county..."

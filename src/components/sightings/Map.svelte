@@ -3,6 +3,7 @@
 	import { mapbox, key } from '../../mapbox.js';
 	import Summary from './Summary.svelte';
 	import type { SightingDetail } from '../../lib/model';
+	import Welcome from '../welcome/Welcome.svelte';
 
 	setContext(key, {
 		getMap: () => map
@@ -12,6 +13,7 @@
 	export let lon;
 	export let zoom;
 	export let sightings;
+	export let username;
 
 	let container;
 	let map;
@@ -85,6 +87,8 @@
 					const details: SightingDetail = await speciesResponse.json();
 					open(Summary, { details: details, geo: geo });
 				});
+			} else {
+				open(Welcome, { username: username }, { closeButton: false });
 			}
 		};
 		document.head.appendChild(link);
