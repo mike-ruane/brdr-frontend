@@ -1,5 +1,4 @@
 import type { RequestHandler } from './__types';
-import type { Sighting } from '../lib/model';
 import { parse } from 'cookie';
 
 const base = 'http://localhost:8000/api';

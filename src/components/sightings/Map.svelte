@@ -1,8 +1,8 @@
 <script lang="ts">
-	import {getContext, onMount, setContext} from 'svelte';
-	import {key, mapbox} from '../../mapbox.js';
+	import { getContext, onMount, setContext } from 'svelte';
+	import { key, mapbox } from '../../mapbox.js';
 	import Summary from './Summary.svelte';
-	import type {SightingDetail} from '../../lib/model';
+	import type { SightingDetail } from '../../lib/model';
 	import Welcome from '../welcome/Welcome.svelte';
 
 	setContext(key, {
@@ -19,26 +19,6 @@
 	let map;
 
 	const { open } = getContext('simple-modal');
-
-	function mapSightingsToGeoJson(sightings) {
-		return {
-			type: 'FeatureCollection',
-			features: sightings.map((sighting) => {
-				return {
-					type: 'Feature',
-					properties: {
-						name: sighting.name,
-						geoId: sighting.geoId,
-						speciesCount: sighting.species.length
-					},
-					geometry: {
-						type: 'Polygon',
-						coordinates: [sighting.geo]
-					}
-				};
-			})
-		};
-	}
 
 	onMount(async () => {
 		const link = document.createElement('link');
