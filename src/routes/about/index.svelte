@@ -18,8 +18,8 @@
 	<strong>brdr</strong> is designed to do just this. It's just the <strong>British Isles</strong>
 	currently, which has been <strong>carved up into counties</strong>. You can
 	<strong>add sightings</strong>
-	from your day in the field and you'll get these presented to you, alongside all your other
-	sightings, on an <strong>interactive map</strong>.
+	from your day in the field and you'll get these presented to you, alongside all your other sightings,
+	on an <strong>interactive map</strong>.
 	<br />
 </p>
 

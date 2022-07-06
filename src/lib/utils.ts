@@ -8,7 +8,6 @@ export async function addSightingMetadata(): Promise<AddSightingData | undefined
 	const speciesResponseBody: Species[] = await speciesResponse.json();
 	const geosResponseBody: Geo[] = await geosResponse.json();
 	if (speciesResponse.status === 200 && geosResponse.status === 200) {
-		console.log(geosResponseBody);
 		return {
 			species: speciesResponseBody,
 			geos: geosResponseBody
