@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { getContext, onMount, setContext } from 'svelte';
-	import { mapbox, key } from '../../mapbox.js';
+	import {getContext, onMount, setContext} from 'svelte';
+	import {key, mapbox} from '../../mapbox.js';
 	import Summary from './Summary.svelte';
-	import type { SightingDetail } from '../../lib/model';
+	import type {SightingDetail} from '../../lib/model';
 	import Welcome from '../welcome/Welcome.svelte';
 
 	setContext(key, {
@@ -52,12 +52,11 @@
 				zoom
 			});
 
-			if (sightings.length > 0) {
+			if (sightings['features'].length > 0) {
 				map.on('load', function () {
-					const geoJson = mapSightingsToGeoJson(sightings);
 					map.addSource('lad', {
 						type: 'geojson',
-						data: geoJson
+						data: sightings
 					});
 
 					map.addLayer({

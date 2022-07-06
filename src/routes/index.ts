@@ -25,7 +25,7 @@ export const get: RequestHandler = async ({ request }) => {
 	});
 
 	if (response.status === 200) {
-		const responseBody: Sighting[] = await response.json();
+		const responseBody: string = await response.json();
 		return {
 			body: {
 				username: cookies.brdr,
