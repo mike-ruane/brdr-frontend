@@ -24,7 +24,21 @@
 </script>
 
 {#if success}
-	<p><span>🪶 🪶 🪶</span><span> {buildSuccessMessage()} </span></p>
+	<div>
+		<p>
+			<span>🪶 🪶 🪶</span>
+			<span
+				>Added the following sightings in {location} on {dayjs(date).format('ddd MMM D, YYYY')}
+			</span>
+		</p>
+		<br />
+		<br />
+		<ul style="list-style-type:none">
+			{#each species as s}
+				<li>{s}</li>
+			{/each}
+		</ul>
+	</div>
 {:else}
 	<p><span>❌ ❌ ❌</span><span> {buildDuplicateMessage()} </span></p>
 {/if}

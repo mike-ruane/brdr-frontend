@@ -1,7 +1,7 @@
 import type { RequestHandler } from './__types';
 import type { SightingDetail } from '../lib/model';
 
-const base = 'http://localhost:8000/api';
+const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export const get: RequestHandler = async ({ request }) => {
 	const cookie: string | null = request.headers.get('cookie');
