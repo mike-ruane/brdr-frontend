@@ -35,17 +35,6 @@ export type Form = {
 };
 
 export type SightingDetail = {
-	date: string;
-	species: Species[];
-};
-
-export type LoginInfo = {
-	email: string;
-	password: string;
-};
-
-export type RegistrationInfo = {
-	username: string;
-	email: string;
-	password: string;
+	genus: string;
+	species: Species;
 };

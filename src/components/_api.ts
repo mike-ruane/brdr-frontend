@@ -9,7 +9,7 @@
 	guarantees are made. Don't use it to organise your life.)
 */
 
-const base = 'http://localhost:8000/api';
+const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export function getResources(resource: string) {
 	return fetch(`${base}/${resource}`, {

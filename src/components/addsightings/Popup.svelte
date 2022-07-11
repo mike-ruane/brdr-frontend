@@ -87,7 +87,7 @@
 					on:select={() => (formData.date = dayjs(date).format('YYYY-MM-DD'))}
 				/>
 			</div>
-			<button on:click={handleSubmit}>Submit</button>
+			<button type="button" class="btn btn-dark" on:click={handleSubmit}>Submit</button>
 		</div>
 	</div>
 {/if}

@@ -1,6 +1,6 @@
 import type { RequestHandler } from './__types';
 
-const base = 'http://localhost:8000/api';
+const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export const post: RequestHandler = async ({ request }) => {
 	const formData = await request.formData();

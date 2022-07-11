@@ -60,10 +60,11 @@
 				});
 
 				map.on('click', 'lad-layer', async (e) => {
-					const geoId = e.features[0].properties.geoId;
-					const geo = e.features[0].properties.name;
+					const geoId = e.features[0].properties.geometryId;
+					const geo = e.features[0].properties.geometry;
 					const speciesResponse = await fetch(`summary?geoId=${geoId}`);
 					const details: SightingDetail = await speciesResponse.json();
+					console.log(details);
 					open(Summary, { details: details, geo: geo });
 				});
 			} else {
