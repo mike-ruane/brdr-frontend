@@ -34,7 +34,7 @@
 <p>
 	We <strong>brdrs</strong> like to keep lists. I've got a few, my brother's got a few - it's
 	<strong> good family fun</strong>. We write these down on sheets of A4, full of spelling misstakes
-	and <del>deletions</del>, for posterity. But maybe it's time for a digitised approach.
+	and <del>deletions</del>, for posterity. But maybe it's time for a digitised approach. Yeh?
 	<br />
 	<br />
 
