@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { SightingDetail } from '../../lib/model';
-	import dayjs from 'dayjs';
 
 	export let details: SightingDetail;
 	export let geo: string;

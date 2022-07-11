@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Select from 'svelte-select';
 	import { DateInput } from 'date-picker-svelte';
-	import dayjs from 'dayjs';
+	import moment from 'moment';
 
 	import AddSightingResponse from './Response.svelte';
 	import type { AddSightingData, Form } from '../../lib/model';
@@ -16,7 +16,7 @@
 	let formData: Form = {} as Form;
 	let showResponse = false;
 	let success: boolean;
-	formData.date = dayjs(date).format('YYYY-MM-DD');
+	formData.date = moment(date).format('YYYY-MM-DD');
 
 	onMount(async () => {
 		metadata = await addSightingMetadata();
@@ -84,7 +84,7 @@
 					bind:value={date}
 					format="dd/MM/yyyy"
 					closeOnSelection="true"
-					on:select={() => (formData.date = dayjs(date).format('YYYY-MM-DD'))}
+					on:select={() => (formData.date = moment(date).format('YYYY-MM-DD'))}
 				/>
 			</div>
 			<button type="button" class="btn btn-dark" on:click={handleSubmit}>Submit</button>

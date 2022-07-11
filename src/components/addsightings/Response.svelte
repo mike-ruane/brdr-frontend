@@ -1,5 +1,5 @@
 <script lang="ts">
-	import dayjs from 'dayjs';
+	import moment from 'moment';
 
 	export let species: string[];
 	export let location: string;
@@ -8,11 +8,11 @@
 
 	function buildSuccessMessage() {
 		if (species.length === 1) {
-			return `Added your sighting of ${species} in ${location} on ${dayjs(date).format(
+			return `Added your sighting of ${species} in ${location} on ${moment(date).format(
 				'ddd MMM D, YYYY'
 			)}`;
 		} else {
-			return `Added the following sightings in ${location} on ${dayjs(date).format(
+			return `Added the following sightings in ${location} on ${moment(date).format(
 				'ddd MMM D, YYYY'
 			)}:\n${species.join('\n')}`;
 		}
@@ -28,7 +28,7 @@
 		<p>
 			<span>🪶 🪶 🪶</span>
 			<span
-				>Added the following sightings in {location} on {dayjs(date).format('ddd MMM D, YYYY')}
+				>Added the following sightings in {location} on {moment(date).format('ddd MMM D, YYYY')}
 			</span>
 		</p>
 		<br />
