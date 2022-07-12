@@ -64,7 +64,6 @@
 					const geo = e.features[0].properties.geometry;
 					const speciesResponse = await fetch(`summary?geoId=${geoId}`);
 					const details: SightingDetail = await speciesResponse.json();
-					console.log(details);
 					open(Summary, { details: details, geo: geo });
 				});
 			} else {
