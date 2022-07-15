@@ -1,20 +1,15 @@
 <script lang="ts">
 	import { getContext, onMount } from 'svelte';
 	import Popup from '../addsightings/Popup.svelte';
-	import { addSightingMetadata } from '../../lib/utils';
-	import type { AddSightingData } from '../../lib/model';
 	import { invalidate } from '$app/navigation';
+	import { user } from '../../lib/stores/user';
+	import { welcome } from '../../lib/stores/welcome';
 
 	const { open } = getContext('simple-modal');
-	let metadata: AddSightingData;
-	export let username: string;
+	let username: string;
+	user.subscribe(user => username = user);
 
-	onMount(async () => {
-		const metadataResponse = await addSightingMetadata();
-		if (metadataResponse) {
-			metadata = metadataResponse;
-		}
-	});
+	onMount(() => welcome.set(true));
 
 	function handleOnClick() {
 		open(

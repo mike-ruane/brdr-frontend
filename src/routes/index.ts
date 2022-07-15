@@ -5,7 +5,9 @@ const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export const get: RequestHandler = async ({ request }) => {
 	const cookies = parse(request.headers.get('cookie') || '');
-	if (!cookies.jwt) {
+	const jwt = cookies && cookies.jwt && cookies.jwt;
+	const brdr = cookies && cookies.brdr && cookies.brdr;
+	if (!jwt) {
 		return {
 			status: 303,
 			headers: {
@@ -23,11 +25,12 @@ export const get: RequestHandler = async ({ request }) => {
 		credentials: 'include'
 	});
 
+
 	if (response.status === 200) {
 		const responseBody: string = await response.json();
 		return {
 			body: {
-				username: cookies.brdr,
+				username: brdr,
 				sightings: responseBody
 			}
 		};

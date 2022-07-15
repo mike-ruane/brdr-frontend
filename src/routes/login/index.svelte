@@ -6,8 +6,9 @@
 
 		<input type="password" name="password" class="form-control" placeholder="Password" required />
 
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+		<button class="w-100 btn btn-lg btn-dark" type="submit">Sign in</button>
 	</form>
+	<p><a href="/register">Create account</a></p>
 </div>
 
 <style>
@@ -22,5 +23,14 @@
 		margin-bottom: 10px;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
+	}
+
+	p {
+		text-align: center;
+		padding: 5px;
+	}
+
+	a {
+		color: black;
 	}
 </style>
