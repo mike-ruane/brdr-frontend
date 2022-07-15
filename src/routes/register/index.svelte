@@ -8,7 +8,7 @@
 
 		<input type="password" name="password" class="form-control" placeholder="Password" required />
 
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+		<button class="w-100 btn btn-lg btn-dark" type="submit">Submit</button>
 	</form>
 </div>
 

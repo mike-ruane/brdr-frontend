@@ -5,6 +5,8 @@ const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export const post: RequestHandler = async ({ request }) => {
 	const data = await request.formData();
+	const email = data.has('email') ? data.get('email') : undefined;
+	const password = data.has('password') ? data.get('password') : undefined;
 	const response = await fetch(`${base}/login`, {
 		method: 'POST',
 		headers: {
@@ -13,8 +15,8 @@ export const post: RequestHandler = async ({ request }) => {
 		},
 		credentials: 'include',
 		body: JSON.stringify({
-			email: data.has('email') ? data.get('email') : undefined,
-			password: data.has('password') ? data.get('password') : undefined
+			email: email,
+			password: password
 		})
 	});
 

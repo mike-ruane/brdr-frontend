@@ -4,6 +4,7 @@
 	import Summary from './Summary.svelte';
 	import type { SightingDetail } from '../../lib/model';
 	import Welcome from '../welcome/Welcome.svelte';
+	import { welcome } from '../../lib/stores/welcome';
 
 	setContext(key, {
 		getMap: () => map
@@ -17,6 +18,8 @@
 
 	let container;
 	let map;
+	let hasSeenWelcome: boolean;
+	welcome.subscribe(welcome => hasSeenWelcome = welcome);
 
 	const { open } = getContext('simple-modal');
 
@@ -67,7 +70,9 @@
 					open(Summary, { details: details, geo: geo });
 				});
 			} else {
-				open(Welcome, { username: username }, { closeButton: false });
+				if (!hasSeenWelcome) {
+					open(Welcome, { username: username }, { closeButton: false });
+				}
 			}
 		};
 		document.head.appendChild(link);
