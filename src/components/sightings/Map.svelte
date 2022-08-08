@@ -19,7 +19,7 @@
 	let container;
 	let map;
 	let hasSeenWelcome: boolean;
-	welcome.subscribe(welcome => hasSeenWelcome = welcome);
+	welcome.subscribe((welcome) => (hasSeenWelcome = welcome));
 
 	const { open } = getContext('simple-modal');
 
