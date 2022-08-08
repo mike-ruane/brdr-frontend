@@ -2,12 +2,10 @@
 	import { getContext, onMount } from 'svelte';
 	import Popup from '../addsightings/Popup.svelte';
 	import { invalidate } from '$app/navigation';
-	import { user } from '../../lib/stores/user';
 	import { welcome } from '../../lib/stores/welcome';
 
 	const { open } = getContext('simple-modal');
-	let username: string;
-	user.subscribe(user => username = user);
+	export let username: string;
 
 	onMount(() => welcome.set(true));
 

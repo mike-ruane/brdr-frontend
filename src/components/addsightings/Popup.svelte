@@ -58,7 +58,7 @@
 	<AddSightingResponse species={selectedSpecies} location={selectedGeo} {date} {success} />
 {:else}
 	<div class="addSighting">
-		<h3>What have you seen today, {username}?</h3>
+		<h3>What species have you seen, {username}?</h3>
 		<div class="select">
 			<Select
 				items={metadata && metadata.species}

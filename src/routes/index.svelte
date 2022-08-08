@@ -2,17 +2,13 @@
 	import Map from '../components/sightings/Map.svelte';
 	import Modal from 'svelte-simple-modal';
 	import type { Sighting } from '../lib/model';
-	import { user } from '../lib/stores/user';
-	import {onMount} from "svelte";
-	import {authenticated} from "../lib/stores/authenticated";
+	import { onMount } from 'svelte';
+	import { authenticated } from '../lib/stores/authenticated';
 
 	export let username: string;
 	export let sightings: Sighting[];
 
-	user.set(username);
-
 	onMount(() => authenticated.set(true));
-
 </script>
 
 <div class="map-container">

@@ -5,11 +5,14 @@
 declare namespace App {
 	interface Locals {
 		userid: string;
+		username: string;
 	}
 
 	// interface Platform {}
 
-	// interface Session {}
+	interface Session {
+		username: string;
+	}
 
 	// interface Stuff {}
 }

@@ -25,7 +25,6 @@ export const get: RequestHandler = async ({ request }) => {
 		credentials: 'include'
 	});
 
-
 	if (response.status === 200) {
 		const responseBody: string = await response.json();
 		return {
