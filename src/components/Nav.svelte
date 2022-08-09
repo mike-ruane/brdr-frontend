@@ -3,13 +3,9 @@
 	import { page } from '$app/stores';
 	import { invalidate } from '$app/navigation';
 	import Popup from './addsightings/Popup.svelte';
-	import { authenticated } from '../lib/stores/authenticated';
 
 	export let username: string;
 	const { open } = getContext('simple-modal');
-
-	let auth = false;
-	authenticated.subscribe((a) => (auth = a));
 
 	async function showAddSighting() {
 		open(
@@ -23,24 +19,26 @@
 			}
 		);
 	}
-
-	const logout = () => authenticated.set(false);
 </script>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
 	<div class="container-fluid">
 		<a href="/" class="navbar-brand" class:active={$page.url.pathname === '/'}>Home</a>
 		<div>
-			{#if auth}
+			{#if username}
 				<ul class="navbar-nav me-auto mb-2 mb-md-0">
 					<li class="nav-item">
-						<a href="/about" class="nav-link" class:active={$page.url.pathname === '/about'}>About</a>
+						<a href="/about" class="nav-link" class:active={$page.url.pathname === '/about'}
+							>About</a
+						>
 					</li>
+					{#if $page.url.pathname !== '/about'}
+						<li class="nav-item">
+							<a href="/#" class="nav-link" on:click={showAddSighting}>Add Sighting</a>
+						</li>
+					{/if}
 					<li class="nav-item">
-						<a href="/#" class="nav-link" on:click={showAddSighting}>Add Sighting</a>
-					</li>
-					<li class="nav-item">
-						<a href="/logout" class="nav-link" on:click={logout}>Logout</a>
+						<a href="/logout" class="nav-link">Logout</a>
 					</li>
 				</ul>
 			{:else}

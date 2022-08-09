@@ -63,7 +63,7 @@
 				const details: SightingDetail = await speciesResponse.json();
 				open(Summary, { details: details, geo: geo });
 			});
-	};
+		};
 		document.head.appendChild(link);
 		return () => {
 			map.remove();

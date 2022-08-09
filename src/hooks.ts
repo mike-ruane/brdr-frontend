@@ -3,7 +3,7 @@ import * as cookie from 'cookie';
 
 export const getSession: GetSession = async (event) => {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
-	event.locals.username = cookies['brdr'] || '';
+	event.locals.username = cookies['brdr'] || undefined;
 	return {
 		...event.locals
 	};
