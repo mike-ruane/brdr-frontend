@@ -3,8 +3,6 @@
 	import { key, mapbox } from '../../mapbox.js';
 	import Summary from './Summary.svelte';
 	import type { SightingDetail } from '../../lib/model';
-	import Welcome from '../welcome/Welcome.svelte';
-	import { welcome } from '../../lib/stores/welcome';
 
 	setContext(key, {
 		getMap: () => map
@@ -14,12 +12,9 @@
 	export let lon;
 	export let zoom;
 	export let sightings;
-	export let username;
 
 	let container;
 	let map;
-	let hasSeenWelcome: boolean;
-	welcome.subscribe((welcome) => (hasSeenWelcome = welcome));
 
 	const { open } = getContext('simple-modal');
 
@@ -35,46 +30,40 @@
 				zoom
 			});
 
-			if (sightings['features'].length > 0) {
-				map.on('load', function () {
-					map.addSource('lad', {
-						type: 'geojson',
-						data: sightings
-					});
-
-					map.addLayer({
-						id: 'lad-layer',
-						type: 'fill',
-						source: 'lad',
-						paint: {
-							'fill-color': '#eeae4e',
-							'fill-outline-color': 'black'
-						}
-					});
-
-					map.addLayer({
-						id: 'lad-layer-label',
-						type: 'symbol',
-						source: 'lad',
-						layout: {
-							'text-field': '{speciesCount}'
-						}
-					});
+			map.on('load', function () {
+				map.addSource('lad', {
+					type: 'geojson',
+					data: sightings
 				});
 
-				map.on('click', 'lad-layer', async (e) => {
-					const geoId = e.features[0].properties.geometryId;
-					const geo = e.features[0].properties.geometry;
-					const speciesResponse = await fetch(`summary?geoId=${geoId}`);
-					const details: SightingDetail = await speciesResponse.json();
-					open(Summary, { details: details, geo: geo });
+				map.addLayer({
+					id: 'lad-layer',
+					type: 'fill',
+					source: 'lad',
+					paint: {
+						'fill-color': '#eeae4e',
+						'fill-outline-color': 'black'
+					}
 				});
-			} else {
-				if (!hasSeenWelcome) {
-					open(Welcome, { username: username }, { closeButton: false });
-				}
-			}
-		};
+
+				map.addLayer({
+					id: 'lad-layer-label',
+					type: 'symbol',
+					source: 'lad',
+					layout: {
+						'text-field': '{speciesCount}'
+					}
+				});
+			});
+
+			map.on('click', 'lad-layer', async (e) => {
+				const geoId = e.features[0].properties.geometryId;
+				const geo = e.features[0].properties.geometry;
+				const speciesResponse = await fetch(`summary?geoId=${geoId}`);
+				const details: SightingDetail = await speciesResponse.json();
+				open(Summary, { details: details, geo: geo });
+			});
+	};
 		document.head.appendChild(link);
 		return () => {
 			map.remove();

@@ -34,6 +34,9 @@
 			{#if auth}
 				<ul class="navbar-nav me-auto mb-2 mb-md-0">
 					<li class="nav-item">
+						<a href="/about" class="nav-link" class:active={$page.url.pathname === '/about'}>About</a>
+					</li>
+					<li class="nav-item">
 						<a href="/#" class="nav-link" on:click={showAddSighting}>Add Sighting</a>
 					</li>
 					<li class="nav-item">
