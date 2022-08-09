@@ -52,7 +52,7 @@
 	.form-signin {
 		width: 100%;
 		max-width: 330px;
-		padding: 15px;
+		padding: 40px 15px 15px 15px;
 		margin: auto;
 	}
 

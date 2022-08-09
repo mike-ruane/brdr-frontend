@@ -32,7 +32,7 @@
 
 <style>
 	.welcome {
-		padding: 0 10px 10px 10px;
+		padding: 20px 10px 10px 10px;
 	}
 	h2 {
 		text-align: center;
