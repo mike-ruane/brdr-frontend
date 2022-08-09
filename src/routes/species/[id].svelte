@@ -105,7 +105,7 @@
 		text-align: center;
 	}
 
-	.message-brdr-form 	button {
+	.message-brdr-form button {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;

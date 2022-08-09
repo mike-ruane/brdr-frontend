@@ -1,6 +1,6 @@
 <script context="module">
 	/** @type {import('./__types/[slug]').Load} */
-	export async function load({ session }) {
+	export async function load({ params, fetch, session, stuff }) {
 		return {
 			props: {
 				username: session.username

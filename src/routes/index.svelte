@@ -3,23 +3,19 @@
 	import Modal from 'svelte-simple-modal';
 	import type { Sighting } from '../lib/model';
 	import { onMount } from 'svelte';
-	import { authenticated } from '../lib/stores/authenticated';
-	import {welcome} from "../lib/stores/welcome";
+	import { welcome } from '../lib/stores/welcome';
 	import { goto } from '$app/navigation';
 
-	let hasSeenWelcome = false
-	welcome.subscribe((w) => (hasSeenWelcome = w))
+	let hasSeenWelcome = false;
+	welcome.subscribe((w) => (hasSeenWelcome = w));
 	export let username: string;
 	export let sightings: Sighting[];
 
 	onMount(() => {
-		console.log(sightings);
 		if (!hasSeenWelcome && sightings['features'].length == 0) {
-			goto('/about')
+			goto('/about');
 		}
-		authenticated.set(true)
 	});
-
 </script>
 
 <div class="map-container">
