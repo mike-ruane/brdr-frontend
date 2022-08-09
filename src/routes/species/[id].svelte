@@ -83,7 +83,6 @@
 	}
 
 	.message-brdr-form {
-		width: 100%;
 		max-width: 520px;
 		padding: 15px;
 		margin: auto;
@@ -104,5 +103,11 @@
 
 	.message-brdr-form h3 {
 		text-align: center;
+	}
+
+	.message-brdr-form 	button {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
