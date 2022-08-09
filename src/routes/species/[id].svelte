@@ -1,5 +1,5 @@
 <script lang="ts" context="module">
-	export async function load({ params, url, props }) {
+	export async function load({ url, props }) {
 		const query = url.searchParams || ({} as any);
 
 		if (query.has('error')) {
@@ -20,18 +20,18 @@
 			};
 		}
 		return {
-			props: { ...props, page: params.id }
+			props: { ...props }
 		};
 	}
 </script>
 
 <script lang="ts">
 	import type { Species } from '../../lib/model';
+	import { page } from '$app/stores';
 
 	export let error;
 	export let success;
 	export let species: Species;
-	export let page: number;
 </script>
 
 {#if success}
@@ -61,7 +61,7 @@
 <br />
 
 <div class="message-brdr-form">
-	<form action="/species/{page}" method="POST">
+	<form action="/species/{$page.params.id}" method="POST">
 		<h3 class="h3 mb-3 fw-normal">Please get in touch with brdr</h3>
 		<input name="username" class="form-control" placeholder="username" required />
 		<textarea name="body" class="form-control" id="messageBrdr" rows="3" />
