@@ -2,8 +2,9 @@ import type { RequestHandler } from './__types';
 import { parse } from 'cookie';
 
 const base = import.meta.env.VITE_BRDR_API_BASE_URL;
+const protocol = import.meta.env.VITE_BRDR_PROTOCOL;
 
-export const post: RequestHandler = async ({ request }) => {
+export const post: RequestHandler = async ({ request, url }) => {
 	const data = await request.formData();
 	const email = data.has('email') ? data.get('email') : undefined;
 	const password = data.has('password') ? data.get('password') : undefined;
@@ -21,13 +22,13 @@ export const post: RequestHandler = async ({ request }) => {
 	});
 
 	const status: number = response.status;
+	const endpoint = new URL(`${protocol}://${url.host}${url.pathname}`);
 
 	if (status == 401) {
+		endpoint.searchParams.append('error', true);
 		return {
-			status: status,
-			body: {
-				message: 'Invalid credentials'
-			}
+			headers: { Location: endpoint.toString() },
+			status: 302
 		};
 	} else if (status == 200) {
 		const username = await response.text();
