@@ -1,6 +1,6 @@
 <script context="module">
 	/** @type {import('./__types/[slug]').Load} */
-	export async function load({ params, fetch, session, stuff }) {
+	export async function load({ session }) {
 		return {
 			props: {
 				username: session.username
@@ -15,13 +15,12 @@
 	export let username: string;
 </script>
 
+<Nav {username} />
 <Modal styleContent={{ display: 'flex', 'justify-content': 'center' }}>
-	<Nav {username} />
+	<main>
+		<slot />
+	</main>
 </Modal>
-
-<main>
-	<slot />
-</main>
 
 <style>
 	:global(body) {

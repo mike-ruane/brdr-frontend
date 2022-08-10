@@ -3,10 +3,9 @@ import { parse } from 'cookie';
 
 const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
-export const get: RequestHandler = async ({ request }) => {
+export const get: RequestHandler = async ({ request, url, params }) => {
 	const cookies = parse(request.headers.get('cookie') || '');
 	const jwt = cookies && cookies.jwt && cookies.jwt;
-	const brdr = cookies && cookies.brdr && cookies.brdr;
 	if (!jwt) {
 		return {
 			status: 303,
@@ -16,7 +15,10 @@ export const get: RequestHandler = async ({ request }) => {
 		};
 	}
 
-	const response = await fetch(`${base}/sightings`, {
+	const query = url.searchParams || ({} as any);
+	console.log(url.search);
+	const path = query.has('username') ? `sightings?username=${query.get('username')}` : 'sightings';
+	const response = await fetch(`${base}/${path}`, {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
@@ -29,7 +31,6 @@ export const get: RequestHandler = async ({ request }) => {
 		const responseBody: string = await response.json();
 		return {
 			body: {
-				username: brdr,
 				sightings: responseBody
 			}
 		};

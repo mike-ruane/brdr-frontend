@@ -12,6 +12,7 @@
 	export let lon;
 	export let zoom;
 	export let sightings;
+	export let reload: boolean;
 
 	let container;
 	let map;
@@ -72,6 +73,9 @@
 	});
 </script>
 
+{#if reload}
+	{map.getSource('lad').setData(sightings)}
+{/if}
 <div bind:this={container}>
 	{#if map}
 		<slot />

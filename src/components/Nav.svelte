@@ -1,24 +1,7 @@
 <script lang="ts">
-	import { getContext, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { invalidate } from '$app/navigation';
-	import Popup from './addsightings/Popup.svelte';
 
 	export let username: string;
-	const { open } = getContext('simple-modal');
-
-	async function showAddSighting() {
-		open(
-			Popup,
-			{ username: username },
-			{ closeButton: true },
-			{
-				onClosed: () => {
-					invalidate('/');
-				}
-			}
-		);
-	}
 </script>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -32,11 +15,6 @@
 							>About</a
 						>
 					</li>
-					{#if $page.url.pathname !== '/about'}
-						<li class="nav-item">
-							<a href="/#" class="nav-link" on:click={showAddSighting}>Add Sighting</a>
-						</li>
-					{/if}
 					<li class="nav-item">
 						<a href="/logout" class="nav-link">Logout</a>
 					</li>
