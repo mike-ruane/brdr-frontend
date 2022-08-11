@@ -35,16 +35,27 @@
 			</div>
 		{:else}
 			<span class="navbar-brand">Welcome!</span>
-			<div>
-				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+			<div class="dropdown">
+				<button
+					class="btn btn-dark"
+					type="button"
+					id="plainView"
+					data-bs-toggle="dropdown"
+					aria-expanded="false"
+				>
+					<i class="bi bi-list" />
+				</button>
+				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="plainView">
 					<li class="nav-item">
-						<a href="/login" class="nav-link" class:active={$page.url.pathname === '/login'}
+						<a href="/login" class="dropdown-item" class:active={$page.url.pathname === '/login'}
 							>Login</a
 						>
 					</li>
 					<li class="nav-item">
-						<a href="/register" class="nav-link" class:active={$page.url.pathname === '/register'}
-							>Register</a
+						<a
+							href="/register"
+							class="dropdown-item"
+							class:active={$page.url.pathname === '/register'}>Register</a
 						>
 					</li>
 				</ul>
