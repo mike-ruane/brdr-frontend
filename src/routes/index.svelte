@@ -59,7 +59,7 @@
 <div class="grid-container">
 	<div class="map-container">
 		<Modal>
-			<Map lat={55} lon={-2.7885207382742863} zoom={4} {sightings} {reload} />
+			<Map lat={55} lon={-2.7885207382742863} zoom={4.5} {sightings} {reload} />
 		</Modal>
 	</div>
 	<div class="add-sighting">
@@ -91,8 +91,8 @@
 	@media screen and (max-width: 767px) {
 		.add-sighting {
 			position: absolute;
-			bottom: 110px;
-			right: 10px;
+			bottom: 80px;
+			right: 15px;
 		}
 	}
 
