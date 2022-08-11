@@ -30,6 +30,11 @@
 							>About</a
 						>
 					</li>
+					<li>
+						<a href="/contact" class="dropdown-item" class:active={$page.url.pathname === '/contact'}
+						>Contact</a
+						>
+					</li>
 					<li><a href="/logout" class="dropdown-item">Logout</a></li>
 				</ul>
 			</div>
