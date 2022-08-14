@@ -20,7 +20,6 @@
 	const { open } = getContext('simple-modal');
 
 	onMount(async () => {
-		console.log(sightings);
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = 'https://unpkg.com/mapbox-gl/dist/mapbox-gl.css';

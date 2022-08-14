@@ -1,5 +1,9 @@
+<script lang="ts">
+  export let endpoint: string;
+</script>
+
 <div class="message-brdr-form">
-  <form action="/message" method="POST">
+  <form action="{endpoint}" method="POST">
     <div class="grid-container-two">
       <div class="form-header">
         <h3 class="h3 mb-3 fw-normal">Please get in touch with brdr</h3>
@@ -21,7 +25,6 @@
         <button class="w-100 btn btn-lg btn-dark" type="submit">Send</button>
       </div>
     </div>
-
   </form>
 </div>
 

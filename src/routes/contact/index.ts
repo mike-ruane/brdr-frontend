@@ -13,25 +13,29 @@ export const post: RequestHandler = async ({ request, url }) => {
   const type = data.has('type') ? data.get('type') : undefined;
   const body = data.has('body') ? data.get('body') : undefined;
 
-  // const response = await fetch(`${base}/message`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json, text/plain, */*',
-  //     cookie: `jwt=${jwt}`
-  //   },
-  //   credentials: 'include',
-  //   body: JSON.stringify({
-  //     username: username,
-  //     email: email,
-  //     type: type,
-  //     body: body
-  //   })
-  // });
+  const response = await fetch(`${base}/message`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json, text/plain, */*',
+      cookie: `jwt=${jwt}`
+    },
+    credentials: 'include',
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      type: type,
+      body: body
+    })
+  });
 
-  // const status: number = response.status;
   const endpoint = new URL(`${protocol}://${url.host}${url.pathname}`);
 
+  if (response.status == 200) {
+    endpoint.searchParams.append('success', true);
+  } else {
+    endpoint.searchParams.append('error', true);
+  }
   return {
     headers: { Location: endpoint.toString() },
     status: 302
