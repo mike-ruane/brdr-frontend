@@ -62,10 +62,12 @@
 			<Map lat={55} lon={-2.7885207382742863} zoom={4.5} {sightings} {reload} />
 		</Modal>
 	</div>
-	<div class="add-sighting">
-		<button type="button" class="btn btn-dark btn-rounded btn-icon" on:click={getSightings}>
-			<i class="bi bi-plus-lg" />
-		</button>
+	<div class="button-grid">
+		<div class="add-sighting">
+			<button type="button" class="btn btn-dark btn-rounded btn-icon" on:click={getSightings}>
+				<i class="bi bi-plus-lg" />
+			</button>
+		</div>
 	</div>
 </div>
 
@@ -88,19 +90,19 @@
 		width: 50px;
 	}
 
-	@media screen and (max-width: 767px) {
-		.add-sighting {
-			position: absolute;
-			bottom: 80px;
-			right: 15px;
-		}
+	.button-grid {
+		position: absolute;
+		display: grid;
+		height: 100%;
+		width: 100%;
+		grid-template-columns: 10fr 1fr;
+		grid-template-rows: 6fr 1fr;
+		grid-template-areas:
+			'. .'
+			'. add-sighting';
 	}
 
-	@media screen and (min-width: 768px) {
-		.add-sighting {
-			margin-left: 95%;
-			margin-top: 47%;
-			position: absolute;
-		}
+	.add-sighting {
+		grid-area: add-sighting;
 	}
 </style>
