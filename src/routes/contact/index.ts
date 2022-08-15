@@ -1,30 +1,9 @@
 import type { RequestHandler } from './__types';
 import { parse } from 'cookie';
-import type { Species } from '../../lib/model';
 
 const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 const protocol = import.meta.env.VITE_BRDR_PROTOCOL;
 
-export const get: RequestHandler = async ({ request, url, params }) => {
-	const cookies = parse(request.headers.get('cookie') || '');
-	const jwt = cookies && cookies.jwt && cookies.jwt;
-	const response = await fetch(`${base}/species/${params.id}`, {
-		method: 'GET',
-		headers: {
-			'content-type': 'application/json',
-			cookie: `jwt=${jwt}`
-		},
-		credentials: 'include'
-	});
-
-	const species: Species = await response.json();
-
-	return {
-		body: {
-			species: species
-		}
-	};
-};
 export const post: RequestHandler = async ({ request, url }) => {
 	const cookies = parse(request.headers.get('cookie') || '');
 	const jwt = cookies && cookies.jwt && cookies.jwt;
@@ -50,10 +29,9 @@ export const post: RequestHandler = async ({ request, url }) => {
 		})
 	});
 
-	const status: number = response.status;
 	const endpoint = new URL(`${protocol}://${url.host}${url.pathname}`);
 
-	if (status == 200) {
+	if (response.status == 200) {
 		endpoint.searchParams.append('success', true);
 	} else {
 		endpoint.searchParams.append('error', true);

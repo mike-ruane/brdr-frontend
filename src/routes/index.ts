@@ -16,7 +16,6 @@ export const get: RequestHandler = async ({ request, url, params }) => {
 	}
 
 	const query = url.searchParams || ({} as any);
-	console.log(url.search);
 	const path = query.has('username') ? `sightings?username=${query.get('username')}` : 'sightings';
 	const response = await fetch(`${base}/${path}`, {
 		method: 'GET',

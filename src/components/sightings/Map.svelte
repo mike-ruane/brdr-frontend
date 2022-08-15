@@ -32,15 +32,15 @@
 			});
 
 			map.on('load', function () {
-				map.addSource('lad', {
+				map.addSource('sightings-geometries', {
 					type: 'geojson',
 					data: sightings
 				});
 
 				map.addLayer({
-					id: 'lad-layer',
+					id: 'sightings-geometries-layer',
 					type: 'fill',
-					source: 'lad',
+					source: 'sightings-geometries',
 					paint: {
 						'fill-color': '#eeae4e',
 						'fill-outline-color': 'black'
@@ -48,9 +48,9 @@
 				});
 
 				map.addLayer({
-					id: 'lad-layer-label',
+					id: 'sightings-geometries-layer-label',
 					type: 'symbol',
-					source: 'lad',
+					source: 'sightings-geometries',
 					layout: {
 						'text-field': '{speciesCount}'
 					}

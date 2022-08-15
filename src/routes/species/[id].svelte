@@ -28,6 +28,7 @@
 <script lang="ts">
 	import type { Species } from '../../lib/model';
 	import { page } from '$app/stores';
+	import ContactForm from '../../components/contact/ContactForm.svelte';
 
 	export let error;
 	export let success;
@@ -60,15 +61,16 @@
 <br />
 <br />
 
-<div class="message-brdr-form">
-	<form action="/species/{$page.params.id}" method="POST">
-		<h3 class="h3 mb-3 fw-normal">Please get in touch with brdr</h3>
-		<input name="username" class="form-control" placeholder="username" required />
-		<textarea name="body" class="form-control" id="messageBrdr" rows="3" />
-		<button class="w-100 btn btn-lg btn-dark" type="submit">Send to brdr</button>
-	</form>
-</div>
+<ContactForm endpoint={$page.url.pathname} />
+<!--<div class="message-brdr-form">-->
+<!--	<form action="/species/{$page.params.id}" method="POST">-->
+<!--		<h3 class="h3 mb-3 fw-normal">Please get in touch with brdr</h3>-->
+<!--		<input name="username" class="form-control" placeholder="username" required />-->
+<!--		<textarea name="body" class="form-control" id="messageBrdr" rows="3" />-->
+<!--		<button class="w-100 btn btn-lg btn-dark" type="submit">Send to brdr</button>-->
+<!--	</form>-->
 
+<!--</div>-->
 <style>
 	h1 {
 		text-align: center;
