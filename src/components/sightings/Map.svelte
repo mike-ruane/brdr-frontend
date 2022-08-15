@@ -74,7 +74,7 @@
 </script>
 
 {#if reload}
-	{map.getSource('lad').setData(sightings)}
+	{map.getSource('sightings-geometries').setData(sightings)}
 {/if}
 <div bind:this={container}>
 	{#if map}
