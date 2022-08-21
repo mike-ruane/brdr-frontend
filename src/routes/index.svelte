@@ -16,6 +16,7 @@
 	import { welcome } from '../lib/stores/welcome';
 	import { goto } from '$app/navigation';
 	import Popup from '../components/addsightings/Popup.svelte';
+	import Twitter from "../components/sharebuttons/Twitter.svelte";
 
 	let hasSeenWelcome = false;
 	welcome.subscribe((w) => (hasSeenWelcome = w));
@@ -67,6 +68,9 @@
 			<i class="bi bi-plus-lg" />
 		</button>
 	</div>
+	<div class="tweet">
+		<Twitter url={"https://google.com"} title={"This is my tweet!"}/>
+	</div>
 </div>
 
 <style>
@@ -94,11 +98,21 @@
 			bottom: 80px;
 			right: 15px;
 		}
+
+		.tweet {
+
+		}
 	}
 
 	@media screen and (min-width: 768px) {
 		.add-sighting {
 			margin-left: 95%;
+			margin-top: 47%;
+			position: absolute;
+		}
+
+		.tweet {
+			margin-left: 1%;
 			margin-top: 47%;
 			position: absolute;
 		}
