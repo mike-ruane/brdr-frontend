@@ -57,7 +57,7 @@
 				});
 			});
 
-			map.on('click', 'lad-layer', async (e) => {
+			map.on('click', 'sightings-geometries-layer', async (e) => {
 				const geoId = e.features[0].properties.geometryId;
 				const geo = e.features[0].properties.geometry;
 				const speciesResponse = await fetch(`summary?geoId=${geoId}`);
