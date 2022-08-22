@@ -1,9 +1,10 @@
 <script lang="ts" context="module">
-	export async function load({ session, props }) {
+	export async function load({ session, props, url }) {
 		return {
 			props: {
 				...props,
-				username: session.username
+				username: session.username,
+				url: url.href
 			}
 		};
 	}
@@ -16,10 +17,12 @@
 	import { welcome } from '../lib/stores/welcome';
 	import { goto } from '$app/navigation';
 	import Popup from '../components/addsightings/Popup.svelte';
+	import Twitter from '../components/sharebuttons/Twitter.svelte';
 
 	let hasSeenWelcome = false;
 	welcome.subscribe((w) => (hasSeenWelcome = w));
 	export let username: string;
+	export let url: string;
 	export let sightings;
 
 	const { open } = getContext('simple-modal');
@@ -59,13 +62,23 @@
 <div class="grid-container">
 	<div class="map-container">
 		<Modal>
-			<Map lat={55} lon={-2.7885207382742863} zoom={4.5} {sightings} {reload} />
+			<Map
+				lat={55}
+				lon={-2.7885207382742863}
+				zoom={4.5}
+				{sightings}
+				{reload}
+				username={undefined}
+			/>
 		</Modal>
 	</div>
 	<div class="add-sighting">
 		<button type="button" class="btn btn-dark btn-rounded btn-icon" on:click={getSightings}>
 			<i class="bi bi-plus-lg" />
 		</button>
+	</div>
+	<div class="tweet">
+		<Twitter url={`${url}${username}`} title={'Check out my sightings on brdr!'} />
 	</div>
 </div>
 
@@ -94,11 +107,20 @@
 			bottom: 80px;
 			right: 15px;
 		}
+
+		.tweet {
+		}
 	}
 
 	@media screen and (min-width: 768px) {
 		.add-sighting {
 			margin-left: 95%;
+			margin-top: 47%;
+			position: absolute;
+		}
+
+		.tweet {
+			margin-left: 1%;
 			margin-top: 47%;
 			position: absolute;
 		}

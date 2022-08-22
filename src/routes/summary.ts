@@ -12,8 +12,12 @@ export const get: RequestHandler = async ({ request }) => {
 	}
 
 	const url = new URL(request.url);
+	const searchParams = url.searchParams || ({} as any);
 	const geoId = url.searchParams.get('geoId');
-	const response = await fetch(`${base}/sightings/${geoId}`, {
+	const apiEndpoint = searchParams.has('username')
+		? `${base}/sightings/${geoId}?username=${searchParams.get('username')}`
+		: `${base}/sightings/${geoId}`;
+	const response = await fetch(apiEndpoint, {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
