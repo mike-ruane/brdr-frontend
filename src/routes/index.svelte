@@ -1,9 +1,10 @@
 <script lang="ts" context="module">
-	export async function load({ session, props }) {
+	export async function load({ session, props, url }) {
 		return {
 			props: {
 				...props,
-				username: session.username
+				username: session.username,
+				url: url.href
 			}
 		};
 	}
@@ -16,11 +17,12 @@
 	import { welcome } from '../lib/stores/welcome';
 	import { goto } from '$app/navigation';
 	import Popup from '../components/addsightings/Popup.svelte';
-	import Twitter from "../components/sharebuttons/Twitter.svelte";
+	import Twitter from '../components/sharebuttons/Twitter.svelte';
 
 	let hasSeenWelcome = false;
 	welcome.subscribe((w) => (hasSeenWelcome = w));
 	export let username: string;
+	export let url: string;
 	export let sightings;
 
 	const { open } = getContext('simple-modal');
@@ -60,7 +62,14 @@
 <div class="grid-container">
 	<div class="map-container">
 		<Modal>
-			<Map lat={55} lon={-2.7885207382742863} zoom={4.5} {sightings} {reload} />
+			<Map
+				lat={55}
+				lon={-2.7885207382742863}
+				zoom={4.5}
+				{sightings}
+				{reload}
+				username={undefined}
+			/>
 		</Modal>
 	</div>
 	<div class="add-sighting">
@@ -69,7 +78,7 @@
 		</button>
 	</div>
 	<div class="tweet">
-		<Twitter url={"https://google.com"} title={"This is my tweet!"}/>
+		<Twitter url={`${url}${username}`} title={'Check out my sightings on brdr!'} />
 	</div>
 </div>
 
@@ -100,7 +109,6 @@
 		}
 
 		.tweet {
-
 		}
 	}
 

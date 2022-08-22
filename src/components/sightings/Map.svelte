@@ -13,6 +13,7 @@
 	export let zoom;
 	export let sightings;
 	export let reload: boolean;
+	export let username: string;
 
 	let container;
 	let map;
@@ -60,7 +61,10 @@
 			map.on('click', 'sightings-geometries-layer', async (e) => {
 				const geoId = e.features[0].properties.geometryId;
 				const geo = e.features[0].properties.geometry;
-				const speciesResponse = await fetch(`summary?geoId=${geoId}`);
+				const summaryEndpoint = username
+					? `summary?geoId=${geoId}&username=${username}`
+					: `summary?geoId=${geoId}`;
+				const speciesResponse = await fetch(summaryEndpoint);
 				const details: SightingDetail = await speciesResponse.json();
 				open(Summary, { details: details, geo: geo });
 			});
