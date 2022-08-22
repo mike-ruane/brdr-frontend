@@ -43,7 +43,10 @@
 	}
 </script>
 
-<button on:click={handleClick}><TwitterIcon colour={TWITTER_BLUE} width={48} /></button>
+<button class="dropdown-item" on:click={handleClick}>
+	<span>Tweet sightings</span>
+	<TwitterIcon colour={TWITTER_BLUE} />
+</button>
 
 <style>
 	button {
