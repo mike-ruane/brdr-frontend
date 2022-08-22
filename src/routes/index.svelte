@@ -72,13 +72,32 @@
 			/>
 		</Modal>
 	</div>
+
 	<div class="add-sighting">
-		<button type="button" class="btn btn-dark btn-rounded btn-icon" on:click={getSightings}>
-			<i class="bi bi-plus-lg" />
-		</button>
-	</div>
-	<div class="tweet">
-		<Twitter url={`${url}${username}`} title={'Check out my sightings on brdr!'} />
+		<div class="dropdown">
+			<button
+				class="btn btn-dark btn-icon"
+				type="button"
+				id="dropdownMenuButton1"
+				data-bs-toggle="dropdown"
+				aria-expanded="false"
+			>
+				<i class="bi bi-caret-up-fill" />
+			</button>
+			<ul
+				class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+				aria-labelledby="dropdownMenuButton1"
+			>
+				<li>
+					<button class="addSighting dropdown-item" on:click={getSightings}
+						><span>Add sightings</span></button
+					>
+				</li>
+				<li>
+					<Twitter url={`${url}${username}`} title={'Check out my sightings on brdr!'} />
+				</li>
+			</ul>
+		</div>
 	</div>
 </div>
 
@@ -95,6 +114,28 @@
 		width: inherit;
 	}
 
+	.addSighting {
+		background: transparent;
+		border-style: none;
+		transition: all 0.2s ease-in-out;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.addSighting {
+			transition: all 2s ease-in-out;
+		}
+	}
+
+	.addSighting:focus,
+	.addSighting:hover {
+		transform: scale(1.1);
+	}
+	@media screen and (max-width: 42rem) {
+		.addSighting {
+			padding-left: 0.5rem;
+			padding-right: 0.5rem;
+		}
+	}
+
 	.btn.btn-rounded {
 		border-radius: 50px;
 		height: 50px;
@@ -107,20 +148,11 @@
 			bottom: 80px;
 			right: 15px;
 		}
-
-		.tweet {
-		}
 	}
 
 	@media screen and (min-width: 768px) {
 		.add-sighting {
 			margin-left: 95%;
-			margin-top: 47%;
-			position: absolute;
-		}
-
-		.tweet {
-			margin-left: 1%;
 			margin-top: 47%;
 			position: absolute;
 		}
