@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-	import Map from '../components/sightings/Map.svelte';
+	import Map from '../../components/sightings/Map.svelte';
 	import Modal from 'svelte-simple-modal';
 
 	export let sightings;
