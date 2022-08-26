@@ -26,8 +26,6 @@
 
 		<input type="text" name="username" class="form-control" placeholder="Username" required />
 
-		<input type="email" name="email" class="form-control" placeholder="Email" required />
-
 		<input type="password" name="password" class="form-control" placeholder="Password" required />
 
 		<input

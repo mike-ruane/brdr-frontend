@@ -6,7 +6,7 @@ const protocol = import.meta.env.VITE_BRDR_PROTOCOL;
 
 export const post: RequestHandler = async ({ request, url }) => {
 	const data = await request.formData();
-	const email = data.has('email') ? data.get('email') : undefined;
+	const username = data.has('username') ? data.get('username') : undefined;
 	const password = data.has('password') ? data.get('password') : undefined;
 	const response = await fetch(`${base}/login`, {
 		method: 'POST',
@@ -16,7 +16,7 @@ export const post: RequestHandler = async ({ request, url }) => {
 		},
 		credentials: 'include',
 		body: JSON.stringify({
-			email: email,
+			username: username,
 			password: password
 		})
 	});

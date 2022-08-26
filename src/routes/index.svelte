@@ -78,7 +78,7 @@
 			<button
 				class="btn btn-dark btn-icon"
 				type="button"
-				id="dropdownMenuButton1"
+				id="add-sighting-popup"
 				data-bs-toggle="dropdown"
 				aria-expanded="false"
 			>
@@ -86,7 +86,7 @@
 			</button>
 			<ul
 				class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-				aria-labelledby="dropdownMenuButton1"
+				aria-labelledby="add-sighting-popup"
 			>
 				<li>
 					<button class="addSighting dropdown-item" on:click={getSightings}
@@ -134,12 +134,6 @@
 			padding-left: 0.5rem;
 			padding-right: 0.5rem;
 		}
-	}
-
-	.btn.btn-rounded {
-		border-radius: 50px;
-		height: 50px;
-		width: 50px;
 	}
 
 	@media screen and (max-width: 767px) {
