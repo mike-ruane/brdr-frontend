@@ -28,7 +28,6 @@ export const post: RequestHandler = async ({ request, url }) => {
 		credentials: 'include',
 		body: JSON.stringify({
 			username: formData.has('username') ? formData.get('username') : undefined,
-			email: formData.has('email') ? formData.get('email') : undefined,
 			password: formData.has('password') ? formData.get('password') : undefined
 		})
 	});

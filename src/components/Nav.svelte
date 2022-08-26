@@ -12,7 +12,7 @@
 				<button
 					class="btn btn-dark"
 					type="button"
-					id="dropdownMenuButton1"
+					id="site-navigation-dropdown"
 					data-bs-toggle="dropdown"
 					aria-expanded="false"
 				>
@@ -20,7 +20,7 @@
 				</button>
 				<ul
 					class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
-					aria-labelledby="dropdownMenuButton1"
+					aria-labelledby="site-navigation-dropdown"
 				>
 					<li>
 						<a href="/" class="dropdown-item" class:active={$page.url.pathname === '/'}>Home</a>

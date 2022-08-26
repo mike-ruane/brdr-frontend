@@ -24,7 +24,7 @@
 	<form action="/login" method="POST">
 		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-		<input type="email" name="email" class="form-control" placeholder="Email" required />
+		<input name="username" class="form-control" placeholder="Username" required />
 
 		<input type="password" name="password" class="form-control" placeholder="Password" required />
 
