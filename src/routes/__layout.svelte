@@ -24,6 +24,6 @@
 
 <style>
 	:global(body) {
-		font-family: 'Courier New', monospace;
+		font-family: 'Montserrat', sans-serif;
 	}
 </style>
