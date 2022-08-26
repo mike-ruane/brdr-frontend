@@ -94,7 +94,7 @@
 					>
 				</li>
 				<li>
-					<Twitter url={`${url}${username}`} title={'Check out my sightings on brdr!'} />
+					<Twitter url={`${url}user/${username}`} title={'Check out my sightings on brdr!'} />
 				</li>
 			</ul>
 		</div>
