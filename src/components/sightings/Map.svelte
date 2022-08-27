@@ -64,7 +64,7 @@
 				const summaryEndpoint = username
 					? `/summary?geoId=${geoId}&username=${username}`
 					: `/summary?geoId=${geoId}`;
-				const speciesResponse = await fetch(summaryEndpoint);
+				const speciesResponse = await fetch(`/summary?geoId=${geoId}&username=${username}`);
 				const details: SightingDetail = await speciesResponse.json();
 				open(Summary, { details: details, geo: geo });
 			});

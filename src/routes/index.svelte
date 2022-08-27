@@ -48,7 +48,7 @@
 							'Content-Type': 'application/json'
 						}
 					};
-					const response = await fetch('sightings', settings);
+					const response = await fetch(`sightings?username=${username}`, settings);
 					if (response.status === 200) {
 						const json = await response.json();
 						sightings = json.sightings;
@@ -62,14 +62,7 @@
 <div class="grid-container">
 	<div class="map-container">
 		<Modal>
-			<Map
-				lat={55}
-				lon={-2.7885207382742863}
-				zoom={4.5}
-				{sightings}
-				{reload}
-				username={undefined}
-			/>
+			<Map lat={55} lon={-2.7885207382742863} zoom={4.5} {sightings} {reload} {username} />
 		</Modal>
 	</div>
 

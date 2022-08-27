@@ -19,15 +19,17 @@ export const post: RequestHandler = async ({ request }) => {
 	};
 };
 
-export const get: RequestHandler = async ({ request }) => {
-	const cookies = parse(request.headers.get('cookie') || '');
-	const jwt = cookies && cookies.jwt && cookies.jwt;
-
-	const response = await fetch(`${base}/sightings`, {
+export const get: RequestHandler = async ({ url }) => {
+	if (!url.searchParams.has('username')) {
+		return {
+			status: 400
+		};
+	}
+	const username = url.searchParams.get('username');
+	const response = await fetch(`${base}/sightings?username=${username}`, {
 		method: 'GET',
 		headers: {
-			'content-type': 'application/json',
-			cookie: `jwt=${cookies.jwt}`
+			'content-type': 'application/json'
 		},
 		credentials: 'include'
 	});
