@@ -53,6 +53,11 @@
 					<i class="bi bi-list" />
 				</button>
 				<ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="plainView">
+					<li>
+						<a href="/about" class="dropdown-item" class:active={$page.url.pathname === '/about'}
+						>About</a
+						>
+					</li>
 					<li class="nav-item">
 						<a href="/login" class="dropdown-item" class:active={$page.url.pathname === '/login'}
 							>Login</a
