@@ -1,15 +1,13 @@
 import type { RequestHandler } from './__types';
 import type { SightingDetail } from '../lib/model';
+import { parse } from 'cookie';
 
 const base = import.meta.env.VITE_BRDR_API_BASE_URL;
 
 export const get: RequestHandler = async ({ request }) => {
-	const cookie: string | null = request.headers.get('cookie');
-	if (cookie == null) {
-		return {
-			status: 401
-		};
-	}
+	const cookies = parse(request.headers.get('cookie') || '');
+	const jwt = cookies && cookies.jwt && cookies.jwt;
+	const jwtCookie = jwt ? `jwt=${jwt}` : '';
 
 	const url = new URL(request.url);
 	const searchParams = url.searchParams || ({} as any);
@@ -21,7 +19,7 @@ export const get: RequestHandler = async ({ request }) => {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
-			cookie: cookie
+			cookie: jwtCookie
 		},
 		credentials: 'include'
 	});
