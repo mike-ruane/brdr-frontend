@@ -24,18 +24,38 @@
 		currently, which has been <strong>carved up into counties</strong>. You can
 		<strong>add sightings</strong> from your day in the field and you'll get these presented to you,
 		alongside all your other sightings, on an <strong>interactive map</strong>.
-		<br />
-		<br />
 	</p>
-
-	<p class="video-header">Take a look at this demo of <strong>how to use brdr.</strong></p>
-	<video width="320" height="240" controls>
-		<source src="brdr_demo.mov" type="video/mp4" />
-		Your browser does not support the video tag.
-	</video>
 </div>
 
-<button type="button" class="btn btn-dark" on:click={handleOnClick}>So let's get started!</button>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 mt-3 col-lg-6">
+			<img src="sightings_1.jpg" class="img-fluid" alt="image" />
+			<span>Use the button in the bottom right to add sightings</span>
+		</div>
+		<div class="col-md-4 mt-3 col-lg-6">
+			<img src="sightings_2.jpg" class="img-fluid" alt="image" />
+			<span>Input your species and select your location...</span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 mt-3 col-lg-6">
+			<img src="sightings_3.jpg" class="img-fluid" alt="image" />
+			<span>and your sightings will appear on the map</span>
+		</div>
+		<div class="col-md-4 mt-3 col-lg-6">
+			<img src="sightings_4.jpg" class="img-fluid" alt="image" />
+			<span>Click on the shaded in area to then view your sightings</span>
+		</div>
+	</div>
+</div>
+<!--<div class="storyboard">-->
+<!--	<img src="brdr_storyboard_2.jpg" alt="brdr panel" width="800" height="800">-->
+<!--</div>-->
+
+<div class="lets-go">
+	<button type="button" class="btn btn-dark" on:click={handleOnClick}>So let's get started!</button>
+</div>
 
 <style>
 	.welcome {
@@ -47,19 +67,13 @@
 		text-align: center;
 	}
 
-	video {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
 	button {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 	}
 
-	.video-header {
-		text-align: center;
+	.lets-go {
+		padding: 20px 20px 20px 20px;
 	}
 </style>
