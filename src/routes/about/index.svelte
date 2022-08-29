@@ -25,8 +25,10 @@
 		<strong>add sightings</strong> from your day in the field and you'll get these presented to you,
 		alongside all your other sightings, on an <strong>interactive map</strong>.
 		<br />
+		<br />
 	</p>
 
+	<p class="video-header">Take a look at this demo of <strong>how to use brdr.</strong></p>
 	<video width="320" height="240" controls>
 		<source src="brdr_demo.mov" type="video/mp4" />
 		Your browser does not support the video tag.
@@ -55,5 +57,9 @@
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.video-header {
+		text-align: center;
 	}
 </style>
