@@ -26,6 +26,11 @@
 		alongside all your other sightings, on an <strong>interactive map</strong>.
 		<br />
 	</p>
+
+	<video width="320" height="240" controls>
+		<source src="brdr_demo.mov" type="video/mp4" />
+		Your browser does not support the video tag.
+	</video>
 </div>
 
 <button type="button" class="btn btn-dark" on:click={handleOnClick}>So let's get started!</button>
@@ -33,10 +38,17 @@
 <style>
 	.welcome {
 		padding: 20px 10px 10px 10px;
+		display: block;
 	}
 
 	h1 {
 		text-align: center;
+	}
+
+	video {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	button {
