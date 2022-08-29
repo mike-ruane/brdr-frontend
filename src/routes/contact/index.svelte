@@ -7,10 +7,14 @@
 	<h1>Please get in touch!</h1>
 	<br />
 	<p>
-		brdr's power is in the community. In order for brdr to become more powerful, it could really do
-		with a little help from its friends. If you think you could help, please get in touch using the
-		form below.
+		brdr is only really as powerful as the dataset that's behind it. At present, we only have basic
+		information like the name of the species and which family it belongs to. What brdr could do with
+		is a little help from the community to enrich this dataset. Think Collins Bird Guide, but
+		digitised. If you think you could help gather this information, then please get in touch via the
+		form below. This message will go directly to the creator of brdr, who will be in touch!
 	</p>
+
+	<br />
 </div>
 <ContactForm endpoint={$page.url.pathname} />
 
