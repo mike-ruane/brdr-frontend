@@ -33,7 +33,7 @@
 		</p>
 		<br />
 		<br />
-		<ul style="list-style-type:none">
+		<ul>
 			{#each species as s}
 				<li>{s}</li>
 			{/each}
@@ -48,5 +48,10 @@
 		display: inline-grid;
 		margin: auto;
 		text-align: center;
+	}
+
+	ul {
+		columns: 2;
+		list-style-type: none;
 	}
 </style>
