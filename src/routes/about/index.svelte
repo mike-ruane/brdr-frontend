@@ -21,7 +21,7 @@
 		<br />
 
 		<strong>brdr</strong> is designed to do just this. It's <strong>just the British Isles</strong>
-		currently, which has been <strong>carved up into counties</strong>. You can
+		currently, which has been <strong>carved up into geographical areas</strong>. You can
 		<strong>add sightings</strong> from your day in the field and you'll get these presented to you,
 		alongside all your other sightings, on an <strong>interactive map</strong>.
 	</p>
