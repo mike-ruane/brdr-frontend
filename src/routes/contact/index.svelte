@@ -1,8 +1,45 @@
+<script lang="ts" context="module">
+	export async function load({ url, props }) {
+		const query = url.searchParams || ({} as any);
+
+		if (query.has('error')) {
+			return {
+				props: {
+					...props,
+					error: query.get('error')
+				}
+			};
+		}
+
+		if (query.has('success')) {
+			return {
+				props: {
+					...props,
+					success: query.get('success') === 'true'
+				}
+			};
+		}
+		return {
+			props: { ...props }
+		};
+	}
+</script>
+
 <script lang="ts">
 	import { page } from '$app/stores';
 	import ContactForm from '../../components/contact/ContactForm.svelte';
+
+	export let error;
+	export let success;
 </script>
 
+{#if success}
+	<div class="alert alert-success" role="alert">Thanks for the message!</div>
+{/if}
+
+{#if error}
+	<div class="alert alert-danger" role="alert">An error has occurred. Please try again.</div>
+{/if}
 <div class="contact">
 	<h1>Please get in touch!</h1>
 	<br />
