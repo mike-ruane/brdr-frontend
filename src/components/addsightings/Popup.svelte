@@ -65,6 +65,7 @@
 				optionIdentifier="id"
 				labelIdentifier="preferredCommonName"
 				placeholder="enter species..."
+				listPlacement="bottom"
 				isMulti="true"
 				on:select={selectSpecies}
 			/>
@@ -75,6 +76,7 @@
 				optionIdentifier="id"
 				labelIdentifier="name"
 				placeholder="enter county..."
+				listPlacement="bottom"
 				on:select={selectGeo}
 			/>
 		</div>
