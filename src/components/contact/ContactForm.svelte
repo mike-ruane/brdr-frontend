@@ -16,10 +16,16 @@
 				<input type="email" name="email" class="form-control" placeholder="email" required />
 			</div>
 			<div class="message-type">
-				<input name="type" class="form-control" required />
+				<input name="type" class="form-control" required placeholder="Subject" />
 			</div>
 			<div class="message-body">
-				<textarea name="body" class="form-control" id="messageBrdr" rows="3" />
+				<textarea
+					name="body"
+					class="form-control"
+					id="messageBrdr"
+					rows="3"
+					placeholder="Your message here..."
+				/>
 			</div>
 			<div class="send-message">
 				<button class="w-100 btn btn-lg btn-dark" type="submit">Send</button>
