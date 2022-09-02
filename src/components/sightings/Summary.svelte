@@ -11,7 +11,7 @@
 	<h4><i>{genus}</i></h4>
 	<ul style="list-style-type:none">
 		{#each species as s}
-			<li><a href="species/{s.id}">{s.preferredCommonName}</a></li>
+			<li><a href="/species/{s.id}">{s.preferredCommonName}</a></li>
 		{/each}
 	</ul>
 {/each}
